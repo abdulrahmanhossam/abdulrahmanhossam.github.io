@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%2318171b' width='100' height='100' rx='15'/><text x='50' y='68' font-family='monospace' font-size='40' font-weight='bold' fill='%23e4e4e7' text-anchor='middle'>AH</text></svg>" type="image/svg+xml">
+    <title>Article - Abdulrahman Hossam</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#09090b',
+                        darkText: '#e4e4e7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+    <style>
+        body {
+            background-image: radial-gradient(#27272a 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .prose pre {
+            background-color: #18181b !important;
+            border: 1px solid #27272a;
+            border-radius: 0.5rem;
+        }
+
+        .prose img {
+            border: 1px solid #3f3f46;
+            border-radius: 0.5rem;
+        }
+
+        .pixelated-img {
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+
+<body class="bg-darkBg text-darkText antialiased min-h-screen pb-24">
+    <div class="fixed top-0 left-0 w-full h-[3px] flex z-50">
+        <div class="flex-1 bg-black"></div>
+        <div class="flex-1 bg-white"></div>
+        <div class="flex-1 bg-[#009736]"></div>
+        <div class="flex-1 bg-[#ed2c25]"></div>
+    </div>
+
+    <main class="max-w-2xl mx-auto px-6 py-16" role="main">
+        <header role="banner">
+            <div class="flex justify-between items-start">
+                <div class="flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full border border-zinc-700 overflow-hidden"
+                        aria-label="Abdulrahman Hossam profile image">
+                        <img src="images/prt.jpg" alt="Abdulrahman Hossam" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-semibold text-white">Abdulrahman Hossam</h1>
+                        <p class="text-[13px] text-zinc-400">Software Engineer</p>
+                    </div>
+                </div>
+                <nav role="navigation" aria-label="Main navigation">
+                    <div class="flex gap-4">
+                        <a href="index.html"
+                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
+                        <a href="blog.html"
+                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">Blog</a>
+                        <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
+                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">GitHub</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <a href="blog.html"
+            class="mt-12 mb-8 block font-mono text-sm text-zinc-400 hover:text-white transition-colors">&lt;- Back to
+            blog</a>
+
+        <article id="content" class="prose prose-invert prose-zinc max-w-none">
+            <p class="text-zinc-400">Loading article...</p>
+        </article>
+
+        <div class="mt-24 pt-10 border-t border-zinc-800 flex flex-col items-center justify-center mb-16">
+            <p class="flex items-center gap-2 font-semibold text-white text-xs">Standing with Palestine <span
+                    class="text-base">🇵🇸</span></p>
+            <p class="text-zinc-500 text-[10px] text-center max-w-md mt-2 leading-relaxed">Supporting justice, human
+                rights, and the dignity of all people. Technology should empower communities and promote peace
+                worldwide.</p>
+        </div>
+
+    </main>
+
+    <div class="fixed bottom-0 left-0 w-full bg-black border-t border-zinc-900 py-3 z-50">
+        <p class="font-semibold text-white text-sm text-center block">From The River To The Sea</p>
+        <p class="text-zinc-500 text-xs text-center block mt-0.5">Day 946: We still remember Gaza</p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const postName = urlParams.get('post') || 'my-first-post';
+
+        fetch(`./posts/${postName}.md`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Article not found');
+                }
+                return response.text();
+            })
+            .then(text => {
+                document.getElementById('content').innerHTML = marked.parse(text);
+            })
+            .catch(error => {
+                document.getElementById('content').innerHTML = '<h1>404</h1><p>Article not found.</p>';
+            });
+    </script>
+</body>
+
+</html>

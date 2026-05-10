@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%2318171b' width='100' height='100' rx='15'/><text x='50' y='68' font-family='monospace' font-size='40' font-weight='bold' fill='%23e4e4e7' text-anchor='middle'>AH</text></svg>" type="image/svg+xml">
+    <title>Blog - Abdulrahman Hossam</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#09090b',
+                        darkText: '#e4e4e7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+    <style>
+        body {
+            background-image: radial-gradient(#27272a 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .pixelated-img {
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+
+<body class="bg-darkBg text-darkText antialiased min-h-screen pb-24">
+    <div class="fixed top-0 left-0 w-full h-[3px] flex z-50">
+        <div class="flex-1 bg-black"></div>
+        <div class="flex-1 bg-white"></div>
+        <div class="flex-1 bg-[#009736]"></div>
+        <div class="flex-1 bg-[#ed2c25]"></div>
+    </div>
+
+    <main class="max-w-2xl mx-auto px-6 py-16" role="main">
+        <header role="banner">
+            <div class="flex justify-between items-start">
+                <div class="flex gap-4 items-center">
+                    <div class="w-12 h-12 rounded-full border border-zinc-700 overflow-hidden"
+                        aria-label="Abdulrahman Hossam profile image">
+                        <img src="images/prt.jpg" alt="Abdulrahman Hossam" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-semibold text-white">Abdulrahman Hossam</h1>
+                        <p class="text-[13px] text-zinc-400">Software Engineer</p>
+                    </div>
+                </div>
+                <nav role="navigation" aria-label="Main navigation">
+                    <div class="flex gap-4">
+                        <a href="index.html"
+                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
+                        <a href="blog.html"
+                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">Blog</a>
+                        <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
+                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">GitHub</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <a href="index.html"
+            class="mt-12 mb-8 block font-mono text-sm text-zinc-400 hover:text-white transition-colors">&lt;- Back</a>
+
+        <h1 class="text-3xl font-bold text-white mb-2 max-w-2xl">Blogging about backend engineering, system design, and
+            scalable software.</h1>
+        <p class="text-zinc-400 text-[13px] mb-8">Notes on backend systems, performance, and building software that
+            scales.</p>
+
+        <div class="flex gap-8 border-b border-zinc-800 pb-8 mb-8">
+            <div>
+                <p class="text-2xl font-bold text-white">1</p>
+                <p class="text-xs text-zinc-500">article</p>
+            </div>
+            <div>
+                <p class="text-2xl font-bold text-white">18</p>
+                <p class="text-xs text-zinc-500">min read</p>
+            </div>
+        </div>
+
+        <div class="p-6 border border-zinc-800 rounded-lg bg-zinc-900/30 mb-12">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-[10px] font-mono text-zinc-500">LATEST</span>
+                <span class="text-xs text-zinc-500">Feb 28, 2026</span>
+            </div>
+            <a href="article.html?post=dotnet-memory-internals"
+                class="text-xl font-semibold mt-4 mb-2 hover:underline decoration-zinc-500 underline-offset-4">.NET
+                Memory Internals: A Deep Dive</a>
+            <p class="text-zinc-400 text-[13px] mb-4">Exploring the CLR's memory management, from the MMU to the
+                Mark-Sweep algorithm, with visual diagrams.</p>
+            <div class="flex items-center gap-2 text-xs text-zinc-500">
+                <span>🕐</span>
+                <span>18 min read</span>
+            </div>
+        </div>
+
+        <div class="mt-24 pt-10 border-t border-zinc-800 flex flex-col items-center justify-center mb-16">
+            <p class="flex items-center gap-2 font-semibold text-white text-xs">Standing with Palestine <span
+                    class="text-base">🇵🇸</span></p>
+            <p class="text-zinc-500 text-[10px] text-center max-w-md mt-2 leading-relaxed">Supporting justice, human
+                rights, and the dignity of all people. Technology should empower communities and promote peace
+                worldwide.</p>
+        </div>
+
+
+    </main>
+
+    <div class="fixed bottom-0 left-0 w-full bg-black border-t border-zinc-900 py-3 z-50">
+        <p class="font-semibold text-white text-sm text-center block">From The River To The Sea</p>
+        <p class="text-zinc-500 text-xs text-center block mt-0.5">Day 946: We still remember Gaza</p>
+    </div>
+</body>
+
+</html>
