@@ -1,132 +1,416 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%2318171b' width='100' height='100' rx='15'/><text x='50' y='68' font-family='monospace' font-size='40' font-weight='bold' fill='%23e4e4e7' text-anchor='middle'>AH</text></svg>" type="image/svg+xml">
+    <meta name="description" content="Blog - Abdulrahman Hossam | Notes on backend systems, performance, and building software that scales.">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FFD700' width='100' height='100' rx='0'/><rect fill='%23000' x='3' y='3' width='94' height='94' rx='0'/><text x='50' y='68' font-family='monospace' font-size='40' font-weight='bold' fill='%23FFD700' text-anchor='middle'>AH</text></svg>"
+        type="image/svg+xml">
     <title>Blog - Abdulrahman Hossam</title>
-
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#09090b',
-                        darkText: '#e4e4e7',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                },
-            },
-        }
-    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
 
     <style>
-        body {
-            background-image: radial-gradient(#27272a 1px, transparent 1px);
-            background-size: 24px 24px;
+        :root {
+            --bg: #FFF8E7;
+            --card-bg: #fff;
+            --text: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --border: #000000;
+            --shadow: #000000;
+            --yellow: #FFD700;
+            --pink: #FF6B9D;
+            --blue: #4DAAFC;
+            --green: #A3F75A;
+            --purple: #C4A1FF;
+            --orange: #FFB347;
+            --border-w: 3px;
+            --shadow-sm: 4px 4px 0px var(--shadow);
+            --shadow-md: 6px 6px 0px var(--shadow);
         }
 
-        .pixelated-img {
-            image-rendering: pixelated;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Flag Banner */
+        .flag-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            display: flex;
+            z-index: 100;
+        }
+
+        .flag-banner div {
+            flex: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-top: 1rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-avatar {
+            width: 52px;
+            height: 52px;
+            border: var(--border-w) solid var(--border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            background: var(--yellow);
+            flex-shrink: 0;
+        }
+
+        .nav-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nav-info h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .nav-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: var(--border-w) solid var(--border);
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .nav-link:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--shadow);
+        }
+
+        .nav-link:active {
+            transform: translate(4px, 4px);
+            box-shadow: none;
+        }
+
+        .nav-link.active {
+            background: var(--yellow);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.4rem 0.8rem;
+            border: 2px solid var(--border);
+            background: #fff;
+            box-shadow: 3px 3px 0px var(--shadow);
+            margin-bottom: 2.5rem;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .back-link:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--shadow);
+        }
+
+        /* Blog Header */
+        .blog-header {
+            margin-bottom: 2rem;
+        }
+
+        .blog-header h2 {
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-header p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            gap: 1.5rem;
+            border: var(--border-w) solid var(--border);
+            background: #fff;
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2.5rem;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Post Card */
+        .post-card {
+            display: block;
+            border: var(--border-w) solid var(--border);
+            box-shadow: var(--shadow-md);
+            padding: 1.5rem;
+            background: var(--purple);
+            margin-bottom: 3rem;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .post-card:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0px var(--shadow);
+        }
+
+        .post-card .badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.15rem 0.5rem;
+            border: 2px solid var(--border);
+            background: var(--yellow);
+            margin-bottom: 0.75rem;
+        }
+
+        .post-card .date {
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-card h3 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-card h3:hover {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 3px;
+        }
+
+        .post-card p {
+            font-size: 0.875rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .post-card .read-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Solidarity */
+        .solidarity {
+            border: var(--border-w) solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            background: #fff;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+        }
+
+        .solidarity h3 {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .solidarity p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            max-width: 28rem;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+
+
+        /* Focus */
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 0.4rem;
+            }
+
+            .nav-link {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
+            }
+
+            .stats-row {
+                gap: 2rem;
+            }
         }
     </style>
 </head>
 
-<body class="bg-darkBg text-darkText antialiased min-h-screen pb-24">
-    <div class="fixed top-0 left-0 w-full h-[3px] flex z-50">
-        <div class="flex-1 bg-black"></div>
-        <div class="flex-1 bg-white"></div>
-        <div class="flex-1 bg-[#009736]"></div>
-        <div class="flex-1 bg-[#ed2c25]"></div>
+<body>
+    <!-- Flag Banner -->
+    <div class="flag-banner" role="banner">
+        <div style="background:#000"></div>
+        <div style="background:#fff"></div>
+        <div style="background:#009736"></div>
+        <div style="background:#ed2c25"></div>
     </div>
 
-    <main class="max-w-2xl mx-auto px-6 py-16" role="main">
-        <header role="banner">
-            <div class="flex justify-between items-start">
-                <div class="flex gap-4 items-center">
-                    <div class="w-12 h-12 rounded-full border border-zinc-700 overflow-hidden"
-                        aria-label="Abdulrahman Hossam profile image">
-                        <img src="images/prt.jpg" alt="Abdulrahman Hossam" class="w-full h-full object-cover">
+    <main style="max-width: 700px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem;" role="main">
+        <!-- Navigation -->
+        <header>
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <div class="nav-left">
+                    <div class="nav-avatar">
+                        <img src="images/prt.jpg" alt="Abdulrahman Hossam">
                     </div>
-                    <div>
-                        <h1 class="text-lg font-semibold text-white">Abdulrahman Hossam</h1>
-                        <p class="text-[13px] text-zinc-400">Software Engineer</p>
+                    <div class="nav-info">
+                        <h1>Abdulrahman Hossam</h1>
+                        <p>Software Engineer</p>
                     </div>
                 </div>
-                <nav role="navigation" aria-label="Main navigation">
-                    <div class="flex gap-4">
-                        <a href="index.html"
-                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
-                        <a href="blog.html"
-                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">Blog</a>
-                        <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
-                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">GitHub</a>
-                    </div>
-                </nav>
-            </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="blog.html" class="nav-link active">Blog</a>
+                    <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
+                        class="nav-link">GitHub</a>
+                </div>
+            </nav>
         </header>
 
-        <a href="index.html"
-            class="mt-12 mb-8 block font-mono text-sm text-zinc-400 hover:text-white transition-colors">&lt;- Back</a>
+        <!-- Back -->
+        <a href="index.html" class="back-link">← Back</a>
 
-        <h1 class="text-3xl font-bold text-white mb-2 max-w-2xl">Blogging about backend engineering, system design, and
-            scalable software.</h1>
-        <p class="text-zinc-400 text-[13px] mb-8">Notes on backend systems, performance, and building software that
-            scales.</p>
+        <!-- Blog Header -->
+        <div class="blog-header">
+            <h2>Blogging about backend engineering, system design, and scalable software.</h2>
+            <p>Notes on backend systems, performance, and building software that scales.</p>
+        </div>
 
-        <div class="flex gap-8 border-b border-zinc-800 pb-8 mb-8">
-            <div>
-                <p class="text-2xl font-bold text-white">1</p>
-                <p class="text-xs text-zinc-500">article</p>
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat">
+                <span class="stat-value">1</span>
+                <span class="stat-label">Article</span>
             </div>
-            <div>
-                <p class="text-2xl font-bold text-white">18</p>
-                <p class="text-xs text-zinc-500">min read</p>
+            <div class="stat">
+                <span class="stat-value">18</span>
+                <span class="stat-label">Min Read</span>
             </div>
         </div>
 
-        <div class="p-6 border border-zinc-800 rounded-lg bg-zinc-900/30 mb-12">
-            <div class="flex justify-between items-center mb-2">
-                <span class="text-[10px] font-mono text-zinc-500">LATEST</span>
-                <span class="text-xs text-zinc-500">Feb 28, 2026</span>
-            </div>
-            <a href="article.html?post=dotnet-memory-internals"
-                class="text-xl font-semibold mt-4 mb-2 hover:underline decoration-zinc-500 underline-offset-4">.NET
-                Memory Internals: A Deep Dive</a>
-            <p class="text-zinc-400 text-[13px] mb-4">Exploring the CLR's memory management, from the MMU to the
+        <!-- Latest Post -->
+        <a href="article.html?post=dotnet-memory-internals" class="post-card">
+            <span class="badge">Latest</span>
+            <div class="date">Feb 28, 2026</div>
+            <h3>.NET Memory Internals: A Deep Dive</h3>
+            <p>Exploring the CLR's memory management, from the MMU to the
                 Mark-Sweep algorithm, with visual diagrams.</p>
-            <div class="flex items-center gap-2 text-xs text-zinc-500">
+            <div class="read-time">
                 <span>🕐</span>
                 <span>18 min read</span>
             </div>
+        </a>
+
+        <!-- Solidarity -->
+        <div class="solidarity">
+            <h3>Standing with Palestine <span style="font-size: 1.15rem;">🇵🇸</span></h3>
+            <p>Supporting justice, human rights, and the dignity of all people. Technology should empower
+                communities and promote peace worldwide.</p>
         </div>
-
-        <div class="mt-24 pt-10 border-t border-zinc-800 flex flex-col items-center justify-center mb-16">
-            <p class="flex items-center gap-2 font-semibold text-white text-xs">Standing with Palestine <span
-                    class="text-base">🇵🇸</span></p>
-            <p class="text-zinc-500 text-[10px] text-center max-w-md mt-2 leading-relaxed">Supporting justice, human
-                rights, and the dignity of all people. Technology should empower communities and promote peace
-                worldwide.</p>
-        </div>
-
-
     </main>
-
-    <div class="fixed bottom-0 left-0 w-full bg-black border-t border-zinc-900 py-3 z-50">
-        <p class="font-semibold text-white text-sm text-center block">From The River To The Sea</p>
-        <p class="text-zinc-500 text-xs text-center block mt-0.5">Day 946: We still remember Gaza</p>
-    </div>
 </body>
 
 </html>

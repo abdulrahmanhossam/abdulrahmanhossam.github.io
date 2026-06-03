@@ -1,116 +1,437 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%2318171b' width='100' height='100' rx='15'/><text x='50' y='68' font-family='monospace' font-size='40' font-weight='bold' fill='%23e4e4e7' text-anchor='middle'>AH</text></svg>" type="image/svg+xml">
+    <meta name="description" content="Article - Abdulrahman Hossam | Software Engineer">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FFD700' width='100' height='100' rx='0'/><rect fill='%23000' x='3' y='3' width='94' height='94' rx='0'/><text x='50' y='68' font-family='monospace' font-size='40' font-weight='bold' fill='%23FFD700' text-anchor='middle'>AH</text></svg>"
+        type="image/svg+xml">
     <title>Article - Abdulrahman Hossam</title>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#09090b',
-                        darkText: '#e4e4e7',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                },
-            },
-        }
-    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
 
     <style>
+        :root {
+            --bg: #FFF8E7;
+            --card-bg: #fff;
+            --text: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --border: #000000;
+            --shadow: #000000;
+            --yellow: #FFD700;
+            --pink: #FF6B9D;
+            --blue: #4DAAFC;
+            --green: #A3F75A;
+            --purple: #C4A1FF;
+            --orange: #FFB347;
+            --border-w: 3px;
+            --shadow-sm: 4px 4px 0px var(--shadow);
+            --shadow-md: 6px 6px 0px var(--shadow);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-image: radial-gradient(#27272a 1px, transparent 1px);
-            background-size: 24px 24px;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
         }
 
-        .prose pre {
-            background-color: #18181b !important;
-            border: 1px solid #27272a;
-            border-radius: 0.5rem;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .prose img {
-            border: 1px solid #3f3f46;
-            border-radius: 0.5rem;
+        /* Flag Banner */
+        .flag-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            display: flex;
+            z-index: 100;
         }
 
-        .pixelated-img {
-            image-rendering: pixelated;
+        .flag-banner div {
+            flex: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-top: 1rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-avatar {
+            width: 52px;
+            height: 52px;
+            border: var(--border-w) solid var(--border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            background: var(--yellow);
+            flex-shrink: 0;
+        }
+
+        .nav-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nav-info h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .nav-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: var(--border-w) solid var(--border);
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .nav-link:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--shadow);
+        }
+
+        .nav-link:active {
+            transform: translate(4px, 4px);
+            box-shadow: none;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.4rem 0.8rem;
+            border: 2px solid var(--border);
+            background: #fff;
+            box-shadow: 3px 3px 0px var(--shadow);
+            margin-bottom: 2.5rem;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .back-link:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--shadow);
+        }
+
+        /* Article Content - Prose Styling */
+        .article-content {
+            border: var(--border-w) solid var(--border);
+            background: #fff;
+            box-shadow: var(--shadow-md);
+            padding: 2.5rem;
+        }
+
+        .article-content h1 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            border-bottom: 4px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-left: 0.75rem;
+            border-left: 5px solid var(--yellow);
+        }
+
+        .article-content h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .article-content strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .article-content a {
+            color: var(--text);
+            font-weight: 700;
+            border-bottom: 3px solid var(--yellow);
+            transition: background 0.15s;
+        }
+
+        .article-content a:hover {
+            background: var(--yellow);
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content pre {
+            background: var(--text) !important;
+            color: #e4e4e7;
+            border: var(--border-w) solid var(--border);
+            box-shadow: var(--shadow-sm);
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .article-content code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            background: var(--yellow);
+            padding: 0.15em 0.4em;
+            border: 2px solid var(--border);
+            font-weight: 500;
+        }
+
+        .article-content pre code {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .article-content blockquote {
+            border-left: 5px solid var(--blue);
+            background: #f0f8ff;
+            border-top: var(--border-w) solid var(--border);
+            border-right: var(--border-w) solid var(--border);
+            border-bottom: var(--border-w) solid var(--border);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+            font-style: italic;
+        }
+
+        .article-content blockquote p {
+            margin-bottom: 0;
+        }
+
+        .article-content img {
+            border: var(--border-w) solid var(--border);
+            box-shadow: var(--shadow-sm);
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem 0;
+        }
+
+        .article-content hr {
+            border: none;
+            border-top: 3px dashed var(--border);
+            margin: 2rem 0;
+        }
+
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            border: var(--border-w) solid var(--border);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content th {
+            background: var(--yellow);
+            border: 2px solid var(--border);
+            padding: 0.65rem 0.85rem;
+            font-weight: 800;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        .article-content td {
+            border: 2px solid var(--border);
+            padding: 0.65rem 0.85rem;
+            font-size: 0.9rem;
+        }
+
+        /* Loading state */
+        .loading-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Solidarity */
+        .solidarity {
+            border: var(--border-w) solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            background: #fff;
+            box-shadow: var(--shadow-md);
+            margin-top: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .solidarity h3 {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .solidarity p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            max-width: 28rem;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+
+
+        /* Focus */
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 0.4rem;
+            }
+
+            .nav-link {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
+            }
+
+            .article-content {
+                padding: 1.25rem;
+            }
         }
     </style>
 </head>
 
-<body class="bg-darkBg text-darkText antialiased min-h-screen pb-24">
-    <div class="fixed top-0 left-0 w-full h-[3px] flex z-50">
-        <div class="flex-1 bg-black"></div>
-        <div class="flex-1 bg-white"></div>
-        <div class="flex-1 bg-[#009736]"></div>
-        <div class="flex-1 bg-[#ed2c25]"></div>
+<body>
+    <!-- Flag Banner -->
+    <div class="flag-banner" role="banner">
+        <div style="background:#000"></div>
+        <div style="background:#fff"></div>
+        <div style="background:#009736"></div>
+        <div style="background:#ed2c25"></div>
     </div>
 
-    <main class="max-w-2xl mx-auto px-6 py-16" role="main">
-        <header role="banner">
-            <div class="flex justify-between items-start">
-                <div class="flex gap-4 items-center">
-                    <div class="w-12 h-12 rounded-full border border-zinc-700 overflow-hidden"
-                        aria-label="Abdulrahman Hossam profile image">
-                        <img src="images/prt.jpg" alt="Abdulrahman Hossam" class="w-full h-full object-cover">
+    <main style="max-width: 700px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem;" role="main">
+        <!-- Navigation -->
+        <header>
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <div class="nav-left">
+                    <div class="nav-avatar">
+                        <img src="images/prt.jpg" alt="Abdulrahman Hossam">
                     </div>
-                    <div>
-                        <h1 class="text-lg font-semibold text-white">Abdulrahman Hossam</h1>
-                        <p class="text-[13px] text-zinc-400">Software Engineer</p>
+                    <div class="nav-info">
+                        <h1>Abdulrahman Hossam</h1>
+                        <p>Software Engineer</p>
                     </div>
                 </div>
-                <nav role="navigation" aria-label="Main navigation">
-                    <div class="flex gap-4">
-                        <a href="index.html"
-                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">Home</a>
-                        <a href="blog.html"
-                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">Blog</a>
-                        <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
-                            class="text-[13px] font-medium text-zinc-400 hover:text-white transition-colors">GitHub</a>
-                    </div>
-                </nav>
-            </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
+                        class="nav-link">GitHub</a>
+                </div>
+            </nav>
         </header>
 
-        <a href="blog.html"
-            class="mt-12 mb-8 block font-mono text-sm text-zinc-400 hover:text-white transition-colors">&lt;- Back to
-            blog</a>
+        <!-- Back -->
+        <a href="blog.html" class="back-link">← Back to blog</a>
 
-        <article id="content" class="prose prose-invert prose-zinc max-w-none">
-            <p class="text-zinc-400">Loading article...</p>
+        <!-- Article Content -->
+        <article id="content" class="article-content">
+            <p class="loading-text">Loading article...</p>
         </article>
 
-        <div class="mt-24 pt-10 border-t border-zinc-800 flex flex-col items-center justify-center mb-16">
-            <p class="flex items-center gap-2 font-semibold text-white text-xs">Standing with Palestine <span
-                    class="text-base">🇵🇸</span></p>
-            <p class="text-zinc-500 text-[10px] text-center max-w-md mt-2 leading-relaxed">Supporting justice, human
-                rights, and the dignity of all people. Technology should empower communities and promote peace
-                worldwide.</p>
+        <!-- Solidarity -->
+        <div class="solidarity">
+            <h3>Standing with Palestine <span style="font-size: 1.15rem;">🇵🇸</span></h3>
+            <p>Supporting justice, human rights, and the dignity of all people. Technology should empower
+                communities and promote peace worldwide.</p>
         </div>
-
     </main>
 
-    <div class="fixed bottom-0 left-0 w-full bg-black border-t border-zinc-900 py-3 z-50">
-        <p class="font-semibold text-white text-sm text-center block">From The River To The Sea</p>
-        <p class="text-zinc-500 text-xs text-center block mt-0.5">Day 946: We still remember Gaza</p>
-    </div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -127,7 +448,8 @@
                 document.getElementById('content').innerHTML = marked.parse(text);
             })
             .catch(error => {
-                document.getElementById('content').innerHTML = '<h1>404</h1><p>Article not found.</p>';
+                document.getElementById('content').innerHTML =
+                    '<h1>404</h1><p>Article not found.</p>';
             });
     </script>
 </body>
