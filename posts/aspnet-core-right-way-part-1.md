@@ -136,28 +136,21 @@ Open that URL in your browser or use the `.http` file. You will see an empty 404
 
 ---
 
-## Organizing for Growth
+## Organizing Your Project
 
-A single `Program.cs` and a `Controllers/` folder works for the first week. Beyond that, your project becomes hard to navigate. We will use a **feature-based structure** from the start:
+Keep it simple. The default template gives you a `Controllers/` folder. Just add the folders you need as you go:
 
 ```
 TaskManager.Api/
-├── Program.cs
-├── appsettings.json
-├── Features/
-│   ├── Projects/
-│   │   ├── ProjectsController.cs
-│   │   ├── CreateProject.cs
-│   │   └── GetProjects.cs
-│   └── Tasks/
-│       ├── TasksController.cs
-│       └── ...
-└── Common/
-    ├── Models/
-    └── Data/
+├── Controllers/       # API endpoints
+├── Models/            # Request/response DTOs and entities
+├── Data/              # DbContext and database setup
+├── Services/          # Business logic
+├── Program.cs         # App entrypoint
+└── appsettings.json   # Configuration
 ```
 
-This groups files by feature rather than by technical layer. When you add a new feature, you create one folder instead of touching five separate directories.
+Start with `Controllers/` and `Models/`. Add `Data/` when you bring in a database, `Services/` when a controller gets too thick. No over-engineering — just what you need.
 
 ---
 
