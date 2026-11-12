@@ -4,454 +4,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Article - Abdulrahman Hossam | Software Engineer">
+    <!-- TODO(security): GitHub Pages static hosting does not support custom HTTP headers (X-Frame-Options / frame-ancestors); enforced meta CSP for script-src/object-src/base-uri. -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#1c1c1c">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="Technical article by Abdulrahman Hossam.">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FFD700' width='100' height='100' rx='0'/><rect fill='%23000' x='3' y='3' width='94' height='94' rx='0'/><text x='50' y='68' font-family='monospace' font-size='40' font-weight='bold' fill='%23FFD700' text-anchor='middle'>AH</text></svg>"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231c1c1c' width='100' height='100' rx='16'/><text x='50' y='64' font-family='monospace' font-size='42' font-weight='600' fill='%23f5f5f5' text-anchor='middle'>AH</text></svg>"
         type="image/svg+xml">
-    <title>Article - Abdulrahman Hossam</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <title>Article — Abdulrahman Hossam</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
-
-    <style>
-        :root {
-            --bg: #FFF8E7;
-            --card-bg: #fff;
-            --text: #1a1a1a;
-            --text-muted: #4a4a4a;
-            --border: #000000;
-            --shadow: #000000;
-            --yellow: #FFD700;
-            --pink: #FF6B9D;
-            --blue: #4DAAFC;
-            --green: #A3F75A;
-            --purple: #C4A1FF;
-            --orange: #FFB347;
-            --border-w: 3px;
-            --shadow-sm: 4px 4px 0px var(--shadow);
-            --shadow-md: 6px 6px 0px var(--shadow);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            line-height: 1.6;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* Flag Banner */
-        .flag-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            display: flex;
-            z-index: 100;
-        }
-
-        .flag-banner div {
-            flex: 1;
-        }
-
-        /* Navigation */
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            padding-top: 1rem;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-avatar {
-            width: 52px;
-            height: 52px;
-            border: var(--border-w) solid var(--border);
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            background: var(--yellow);
-            flex-shrink: 0;
-        }
-
-        .nav-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .nav-info h1 {
-            font-size: 1.1rem;
-            font-weight: 800;
-        }
-
-        .nav-info p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .nav-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border: var(--border-w) solid var(--border);
-            background: #fff;
-            box-shadow: var(--shadow-sm);
-            cursor: pointer;
-            transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        .nav-link:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px var(--shadow);
-        }
-
-        .nav-link:active {
-            transform: translate(4px, 4px);
-            box-shadow: none;
-        }
-
-        /* Back Link */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            font-weight: 700;
-            padding: 0.4rem 0.8rem;
-            border: 2px solid var(--border);
-            background: #fff;
-            box-shadow: 3px 3px 0px var(--shadow);
-            margin-bottom: 2.5rem;
-            transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        .back-link:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0px var(--shadow);
-        }
-
-        /* Article Content - Prose Styling */
-        .article-content {
-            border: var(--border-w) solid var(--border);
-            background: #fff;
-            box-shadow: var(--shadow-md);
-            padding: 2.5rem;
-        }
-
-        .article-content h1 {
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            font-weight: 900;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            border-bottom: 4px solid var(--border);
-            padding-bottom: 1rem;
-        }
-
-        .article-content h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            padding-left: 0.75rem;
-            border-left: 5px solid var(--yellow);
-        }
-
-        .article-content h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .article-content p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.25rem;
-            color: var(--text-muted);
-        }
-
-        .article-content strong {
-            color: var(--text);
-            font-weight: 700;
-        }
-
-        .article-content a {
-            color: var(--text);
-            font-weight: 700;
-            border-bottom: 3px solid var(--yellow);
-            transition: background 0.15s;
-        }
-
-        .article-content a:hover {
-            background: var(--yellow);
-        }
-
-        .article-content ul,
-        .article-content ol {
-            margin-bottom: 1.25rem;
-            padding-left: 1.5rem;
-        }
-
-        .article-content li {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .article-content pre {
-            background: var(--text) !important;
-            color: #e4e4e7;
-            border: var(--border-w) solid var(--border);
-            box-shadow: var(--shadow-sm);
-            padding: 1.25rem;
-            overflow-x: auto;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.65;
-            margin-bottom: 1.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .article-content code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85em;
-            background: var(--yellow);
-            padding: 0.15em 0.4em;
-            border: 2px solid var(--border);
-            font-weight: 500;
-        }
-
-        .article-content pre code {
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .article-content blockquote {
-            border-left: 5px solid var(--blue);
-            background: #f0f8ff;
-            border-top: var(--border-w) solid var(--border);
-            border-right: var(--border-w) solid var(--border);
-            border-bottom: var(--border-w) solid var(--border);
-            padding: 1rem 1.25rem;
-            margin-bottom: 1.25rem;
-            font-style: italic;
-        }
-
-        .article-content blockquote p {
-            margin-bottom: 0;
-        }
-
-        .article-content img {
-            border: var(--border-w) solid var(--border);
-            box-shadow: var(--shadow-sm);
-            max-width: 100%;
-            height: auto;
-            margin: 1.5rem 0;
-        }
-
-        .article-content hr {
-            border: none;
-            border-top: 3px dashed var(--border);
-            margin: 2rem 0;
-        }
-
-        .article-content table {
-            width: 100%;
-            border-collapse: collapse;
-            border: var(--border-w) solid var(--border);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 1.5rem;
-        }
-
-        .article-content th {
-            background: var(--yellow);
-            border: 2px solid var(--border);
-            padding: 0.65rem 0.85rem;
-            font-weight: 800;
-            text-align: left;
-            font-size: 0.85rem;
-        }
-
-        .article-content td {
-            border: 2px solid var(--border);
-            padding: 0.65rem 0.85rem;
-            font-size: 0.9rem;
-        }
-
-        /* Loading state */
-        .loading-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            padding: 2rem;
-            text-align: center;
-        }
-
-        /* Solidarity */
-        .solidarity {
-            border: var(--border-w) solid var(--border);
-            padding: 2rem;
-            text-align: center;
-            background: #fff;
-            box-shadow: var(--shadow-md);
-            margin-top: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        .solidarity h3 {
-            font-weight: 900;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .solidarity p {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            max-width: 28rem;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-
-
-        /* Focus */
-        a:focus-visible {
-            outline: 3px solid var(--blue);
-            outline-offset: 2px;
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .nav {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                gap: 0.4rem;
-            }
-
-            .nav-link {
-                padding: 0.4rem 0.7rem;
-                font-size: 0.75rem;
-            }
-
-            .article-content {
-                padding: 1.25rem;
-            }
-        }
-    </style>
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <!-- Flag Banner -->
-    <div class="flag-banner" role="banner">
-        <div style="background:#000"></div>
-        <div style="background:#fff"></div>
-        <div style="background:#009736"></div>
-        <div style="background:#ed2c25"></div>
-    </div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <main style="max-width: 700px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem;" role="main">
-        <!-- Navigation -->
-        <header>
-            <nav class="nav" role="navigation" aria-label="Main navigation">
-                <div class="nav-left">
-                    <div class="nav-avatar">
-                        <img src="images/prt.jpg" alt="Abdulrahman Hossam">
-                    </div>
-                    <div class="nav-info">
-                        <h1>Abdulrahman Hossam</h1>
-                        <p>Software Engineer</p>
-                    </div>
-                </div>
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="blog.html" class="nav-link">Blog</a>
-                    <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
-                        class="nav-link">GitHub</a>
-                </div>
+    <div class="site-shell has-article">
+        <header class="site-header">
+            <a href="index.html" class="brand-link" aria-label="Abdulrahman Hossam, home">
+                <img src="images/avatar.jpg" alt="" width="32" height="32" class="brand-avatar">
+                <span class="brand-handle">abdulrahmanhossam.github.io</span>
+            </a>
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="about.html" class="nav-item">About</a>
+                <a href="projects.html" class="nav-item">Projects</a>
+                <a href="blog.html" class="nav-item is-active">Writing</a>
             </nav>
         </header>
 
-        <!-- Back -->
-        <a href="blog.html" class="back-link">← Back to blog</a>
+        <main id="main-content" class="blog-post">
+            <div class="blog-reading-column">
+                <header data-blog-header="true">
+                    <a href="blog.html" class="text-link" style="margin-bottom: 1rem;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="m12 19-7-7 7-7"></path>
+                            <path d="M19 12H5"></path>
+                        </svg>
+                        <span>All writing</span>
+                    </a>
+                    <h1 id="article-title" class="page-title">Loading…</h1>
+                    <p id="article-description" class="page-description" style="margin-top: 1.1rem;"></p>
+                    <div class="meta-text" style="margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <time id="article-date" class="tabular-nums"></time>
+                        <span aria-hidden="true" style="color: #525252;">·</span>
+                        <span id="article-readtime"></span>
+                    </div>
+                </header>
 
-        <!-- Article Content -->
-        <article id="content" class="article-content">
-            <p class="loading-text">Loading article...</p>
-        </article>
+                <div class="article-toolbar">
+                    <div class="text-size-group" role="group" aria-label="Text size">
+                        <span style="font-size: 0.75rem; color: var(--text-muted);">Text size</span>
+                        <button type="button" class="icon-btn" data-text-size="80" aria-label="Small text (80%)"
+                            title="Small text (80%)" style="font-size: 0.75rem;">A</button>
+                        <button type="button" class="icon-btn is-active" data-text-size="100"
+                            aria-label="Default text (100%)" title="Default text (100%)"
+                            style="font-size: 0.875rem;">A</button>
+                        <button type="button" class="icon-btn" data-text-size="125" aria-label="Large text (125%)"
+                            title="Large text (125%)" style="font-size: 1rem;">A</button>
+                    </div>
 
-        <!-- Solidarity -->
-        <div class="solidarity">
-            <h3>Standing with Palestine <span style="font-size: 1.15rem;">🇵🇸</span></h3>
-            <p>Supporting justice, human rights, and the dignity of all people. Technology should empower
-                communities and promote peace worldwide.</p>
-        </div>
-    </main>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+                        <button type="button" id="open-search-btn" class="text-link" style="min-height: 2rem;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </svg>
+                            <span>Search articles</span>
+                        </button>
+                        <button type="button" id="save-article-btn" class="text-link" aria-pressed="false"
+                            style="min-height: 2rem;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+                            </svg>
+                            <span id="save-article-label">Save article</span>
+                        </button>
+                    </div>
+                </div>
 
+                <aside class="blog-toc-mobile" aria-label="On this page">
+                    <details id="toc-mobile-details">
+                        <summary
+                            style="display: flex; min-height: 3rem; cursor: pointer; list-style: none; align-items: center; justify-content: space-between; font-size: 0.875rem; color: var(--text);">
+                            <span>On this page</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <nav aria-label="On this page" style="padding-bottom: 0.75rem;">
+                            <ol id="toc-mobile-list" class="toc-list"></ol>
+                        </nav>
+                    </details>
+                </aside>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const postName = urlParams.get('post') || 'my-first-post';
+                <article id="content" class="blog-prose">
+                    <p class="body-copy">Loading article…</p>
+                </article>
+            </div>
 
-        fetch(`./posts/${postName}.md`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Article not found');
-                }
-                return response.text();
-            })
-            .then(text => {
-                document.getElementById('content').innerHTML = marked.parse(text);
-            })
-            .catch(error => {
-                document.getElementById('content').innerHTML =
-                    '<h1>404</h1><p>Article not found.</p>';
-            });
-    </script>
+            <aside class="blog-contents" aria-label="Article navigation">
+                <div class="blog-toc-desktop">
+                    <p class="toc-heading">On this page</p>
+                    <nav aria-label="On this page" class="blog-toc-scroll">
+                        <ol id="toc-desktop-list" class="toc-list"></ol>
+                    </nav>
+                </div>
+            </aside>
+        </main>
+
+        <dialog id="search-dialog" class="site-dialog" aria-labelledby="search-dialog-title">
+            <div class="dialog-inner">
+                <div class="dialog-header">
+                    <h2 id="search-dialog-title" class="dialog-title">Search article sections</h2>
+                    <button type="button" id="search-close-btn" class="icon-btn" aria-label="Close search">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <label for="search-input" class="sr-only">Search all article content</label>
+                <input id="search-input" type="search" maxlength="160" class="field-control"
+                    placeholder="Find a concept, API, or code example…" autocomplete="off">
+                <div id="search-results" class="dialog-body"></div>
+            </div>
+        </dialog>
+
+        <footer class="site-footer">
+            <nav id="connect" class="footer-links" aria-label="Contact links">
+                <a href="mailto:ahossam.tech@gmail.com" class="text-link">Email</a>
+                <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
+                    class="text-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/abdulrahman-hossam-0ba758285/" target="_blank"
+                    rel="noopener noreferrer" class="text-link">LinkedIn</a>
+                <a href="https://leetcode.com/u/abdulrhman7ossam2002/" target="_blank" rel="noopener noreferrer"
+                    class="text-link">LeetCode</a>
+                <a href="pdfs/Abdulrahman_Hossam_CV.pdf" target="_blank" rel="noopener noreferrer"
+                    class="text-link">Résumé</a>
+            </nav>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 Abdulrahman Hossam</p>
+                <nav class="footer-more" aria-label="More links">
+                    <a href="ask.html" class="text-link">Ask</a>
+                    <a href="rss.xml" class="text-link" aria-label="Subscribe via RSS">RSS</a>
+                </nav>
+            </div>
+            <details class="palestine-details">
+                <summary class="palestine-summary">
+                    <span>Standing with Palestine 🇵🇸</span>
+                    <svg class="palestine-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                </summary>
+                <div class="palestine-body">
+                    <p style="color: var(--text);">Supporting justice, human rights, and the dignity of all people.</p>
+                    <p>Technology should empower communities and promote peace worldwide.</p>
+                </div>
+            </details>
+        </footer>
+    </div>
+
+    <!-- Pinned exact versions with SRI hashes; update hashes when upgrading dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"
+        integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"
+        integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu"
+        crossorigin="anonymous"></script>
+    <script src="js/data.js"></script>
+    <script src="js/site.js"></script>
+    <script src="js/article.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abdulrahman Hossam — Writing</title>
+    <link>https://abdulrahmanhossam.github.io/blog.html</link>
+    <description>Notes on backend engineering, .NET memory internals, domain modeling, and systems programming.</description>
+    <language>en-us</language>
+    <atom:link href="https://abdulrahmanhossam.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Mark-Sweep Garbage Collector in C#</title>
+      <link>https://abdulrahmanhossam.github.io/article.html?post=tinygc-mark-sweep-internals</link>
+      <guid>https://abdulrahmanhossam.github.io/article.html?post=tinygc-mark-sweep-internals</guid>
+      <pubDate>Fri, 10 Jul 2026 10:00:00 GMT</pubDate>
+      <description>Bump-pointer allocation, free lists, GcRootHandle reachability, and Mark-Sweep reclamation inside TinyGC.NET.</description>
+    </item>
+    <item>
+      <title>Zero-Dependency Domain Modeling in .NET: Inside Egypt.NET</title>
+      <link>https://abdulrahmanhossam.github.io/article.html?post=egypt-net-zero-dependency-domain-modeling</link>
+      <guid>https://abdulrahmanhossam.github.io/article.html?post=egypt-net-zero-dependency-domain-modeling</guid>
+      <pubDate>Mon, 22 Jun 2026 10:00:00 GMT</pubDate>
+      <description>Designing immutable value objects, Span-based National ID parsing (2.13 us), masked logging, and 150+ xUnit tests.</description>
+    </item>
+    <item>
+      <title>ASP.NET Core: The Right Way — Part 2: Controllers, Routing &amp; HTTP Responses</title>
+      <link>https://abdulrahmanhossam.github.io/article.html?post=aspnet-core-right-way-part-2</link>
+      <guid>https://abdulrahmanhossam.github.io/article.html?post=aspnet-core-right-way-part-2</guid>
+      <pubDate>Sun, 14 Jun 2026 10:00:00 GMT</pubDate>
+      <description>Controllers, attribute routing, model binding, and returning meaningful HTTP status codes for CRUD endpoints.</description>
+    </item>
+    <item>
+      <title>ASP.NET Core: The Right Way — Part 1: Framework Foundations &amp; Project Setup</title>
+      <link>https://abdulrahmanhossam.github.io/article.html?post=aspnet-core-right-way-part-1</link>
+      <guid>https://abdulrahmanhossam.github.io/article.html?post=aspnet-core-right-way-part-1</guid>
+      <pubDate>Thu, 04 Jun 2026 10:00:00 GMT</pubDate>
+      <description>How ASP.NET Core works under the hood and how to organize your first scalable API project.</description>
+    </item>
+    <item>
+      <title>.NET Memory Management: A Practical Guide</title>
+      <link>https://abdulrahmanhossam.github.io/article.html?post=dotnet-memory-internals</link>
+      <guid>https://abdulrahmanhossam.github.io/article.html?post=dotnet-memory-internals</guid>
+      <pubDate>Sat, 28 Feb 2026 10:00:00 GMT</pubDate>
+      <description>Exploring the CLR's memory model—thread stack vs managed heap, GC generations, LOH, and avoiding leaks.</description>
+    </item>
+  </channel>
+</rss>
+

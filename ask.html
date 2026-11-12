@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TODO(security): GitHub Pages static hosting does not support custom HTTP headers (X-Frame-Options / frame-ancestors); enforced meta CSP for script-src/object-src/base-uri. -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#1c1c1c">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="Questions, contact details, and engineering notes from Abdulrahman Hossam.">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231c1c1c' width='100' height='100' rx='16'/><text x='50' y='64' font-family='monospace' font-size='42' font-weight='600' fill='%23f5f5f5' text-anchor='middle'>AH</text></svg>"
+        type="image/svg+xml">
+    <title>Ask — Abdulrahman Hossam</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a href="index.html" class="brand-link" aria-label="Abdulrahman Hossam, home">
+                <img src="images/avatar.jpg" alt="" width="32" height="32" class="brand-avatar">
+                <span class="brand-handle">abdulrahmanhossam.github.io</span>
+            </a>
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="about.html" class="nav-item">About</a>
+                <a href="projects.html" class="nav-item">Projects</a>
+                <a href="blog.html" class="nav-item">Writing</a>
+            </nav>
+        </header>
+
+        <main id="main-content" class="stack-lg">
+            <section aria-labelledby="ask-heading" class="stack-sm">
+                <h1 id="ask-heading" class="home-title">Ask &amp; Contact</h1>
+                <p class="lead-copy" style="color: var(--text-muted);">
+                    Feel free to reach out directly regarding backend engineering, .NET architecture, open-source
+                    collaboration, or systems tooling.
+                </p>
+
+                <div class="ask-card" style="margin-top: 1.25rem;">
+                    <p class="body-copy" style="color: var(--text);">
+                        Direct email: <a href="mailto:ahossam.tech@gmail.com"
+                            class="inline-link">ahossam.tech@gmail.com</a>
+                    </p>
+                    <div class="demo-controls" style="margin-top: 0.9rem;">
+                        <a href="mailto:ahossam.tech@gmail.com?subject=Hello%20Abdulrahman" class="btn-primary">Send
+                            email</a>
+                        <button type="button" id="copy-email-btn" class="btn-secondary">Copy email address</button>
+                    </div>
+                </div>
+            </section>
+
+            <section aria-labelledby="faq-heading">
+                <h2 id="faq-heading" class="section-subheading" style="margin-bottom: 0.5rem;">Common questions</h2>
+                <div id="faq-list"></div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <nav id="connect" class="footer-links" aria-label="Contact links">
+                <a href="mailto:ahossam.tech@gmail.com" class="text-link">Email</a>
+                <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
+                    class="text-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/abdulrahman-hossam-0ba758285/" target="_blank"
+                    rel="noopener noreferrer" class="text-link">LinkedIn</a>
+                <a href="https://leetcode.com/u/abdulrhman7ossam2002/" target="_blank" rel="noopener noreferrer"
+                    class="text-link">LeetCode</a>
+                <a href="pdfs/Abdulrahman_Hossam_CV.pdf" target="_blank" rel="noopener noreferrer"
+                    class="text-link">Résumé</a>
+            </nav>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 Abdulrahman Hossam</p>
+                <nav class="footer-more" aria-label="More links">
+                    <a href="ask.html" class="text-link">Ask</a>
+                    <a href="rss.xml" class="text-link" aria-label="Subscribe via RSS">RSS</a>
+                </nav>
+            </div>
+            <details class="palestine-details">
+                <summary class="palestine-summary">
+                    <span>Standing with Palestine 🇵🇸</span>
+                    <svg class="palestine-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                </summary>
+                <div class="palestine-body">
+                    <p style="color: var(--text);">Supporting justice, human rights, and the dignity of all people.</p>
+                    <p>Technology should empower communities and promote peace worldwide.</p>
+                </div>
+            </details>
+        </footer>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>
+

@@ -4,433 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog - Abdulrahman Hossam | Notes on backend systems, performance, and building software that scales.">
+    <!-- TODO(security): GitHub Pages static hosting does not support custom HTTP headers (X-Frame-Options / frame-ancestors); enforced meta CSP for script-src/object-src/base-uri. -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#1c1c1c">
+    <meta name="color-scheme" content="dark">
+    <meta name="description"
+        content="Technical writing by Abdulrahman Hossam on .NET internals, Clean Architecture, garbage collection, and backend systems.">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FFD700' width='100' height='100' rx='0'/><rect fill='%23000' x='3' y='3' width='94' height='94' rx='0'/><text x='50' y='68' font-family='monospace' font-size='40' font-weight='bold' fill='%23FFD700' text-anchor='middle'>AH</text></svg>"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231c1c1c' width='100' height='100' rx='16'/><text x='50' y='64' font-family='monospace' font-size='42' font-weight='600' fill='%23f5f5f5' text-anchor='middle'>AH</text></svg>"
         type="image/svg+xml">
-    <title>Blog - Abdulrahman Hossam</title>
+    <link rel="alternate" type="application/rss+xml" title="Abdulrahman Hossam — Writing" href="rss.xml">
+    <title>Writing — Abdulrahman Hossam</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
-
-    <style>
-        :root {
-            --bg: #FFF8E7;
-            --card-bg: #fff;
-            --text: #1a1a1a;
-            --text-muted: #4a4a4a;
-            --border: #000000;
-            --shadow: #000000;
-            --yellow: #FFD700;
-            --pink: #FF6B9D;
-            --blue: #4DAAFC;
-            --green: #A3F75A;
-            --purple: #C4A1FF;
-            --orange: #FFB347;
-            --border-w: 3px;
-            --shadow-sm: 4px 4px 0px var(--shadow);
-            --shadow-md: 6px 6px 0px var(--shadow);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            line-height: 1.6;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* Flag Banner */
-        .flag-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            display: flex;
-            z-index: 100;
-        }
-
-        .flag-banner div {
-            flex: 1;
-        }
-
-        /* Navigation */
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            padding-top: 1rem;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-avatar {
-            width: 52px;
-            height: 52px;
-            border: var(--border-w) solid var(--border);
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            background: var(--yellow);
-            flex-shrink: 0;
-        }
-
-        .nav-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .nav-info h1 {
-            font-size: 1.1rem;
-            font-weight: 800;
-        }
-
-        .nav-info p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .nav-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border: var(--border-w) solid var(--border);
-            background: #fff;
-            box-shadow: var(--shadow-sm);
-            cursor: pointer;
-            transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        .nav-link:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px var(--shadow);
-        }
-
-        .nav-link:active {
-            transform: translate(4px, 4px);
-            box-shadow: none;
-        }
-
-        .nav-link.active {
-            background: var(--yellow);
-        }
-
-        /* Back Link */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            font-weight: 700;
-            padding: 0.4rem 0.8rem;
-            border: 2px solid var(--border);
-            background: #fff;
-            box-shadow: 3px 3px 0px var(--shadow);
-            margin-bottom: 2.5rem;
-            transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        .back-link:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0px var(--shadow);
-        }
-
-        /* Blog Header */
-        .blog-header {
-            margin-bottom: 2rem;
-        }
-
-        .blog-header h2 {
-            font-size: clamp(1.75rem, 4vw, 2.25rem);
-            font-weight: 900;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-header p {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* Stats Row */
-        .stats-row {
-            display: flex;
-            gap: 1.5rem;
-            border: var(--border-w) solid var(--border);
-            background: #fff;
-            padding: 1rem 1.5rem;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 2.5rem;
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Post Card */
-        .post-card {
-            display: block;
-            border: var(--border-w) solid var(--border);
-            box-shadow: var(--shadow-md);
-            padding: 1.5rem;
-            background: var(--purple);
-            margin-bottom: 3rem;
-            transition: transform 0.15s, box-shadow 0.15s;
-        }
-
-        .post-card:hover {
-            transform: translate(3px, 3px);
-            box-shadow: 3px 3px 0px var(--shadow);
-        }
-
-        .post-card .badge {
-            display: inline-block;
-            font-size: 0.65rem;
-            font-weight: 800;
-            font-family: 'JetBrains Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 0.15rem 0.5rem;
-            border: 2px solid var(--border);
-            background: var(--yellow);
-            margin-bottom: 0.75rem;
-        }
-
-        .post-card .date {
-            font-size: 0.8rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 0.5rem;
-        }
-
-        .post-card h3 {
-            font-size: 1.35rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .post-card h3:hover {
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            text-decoration-thickness: 3px;
-        }
-
-        .post-card p {
-            font-size: 0.875rem;
-            line-height: 1.65;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
-        .post-card .read-time {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Solidarity */
-        .solidarity {
-            border: var(--border-w) solid var(--border);
-            padding: 2rem;
-            text-align: center;
-            background: #fff;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 3rem;
-        }
-
-        .solidarity h3 {
-            font-weight: 900;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .solidarity p {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            max-width: 28rem;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-
-
-        /* Focus */
-        a:focus-visible {
-            outline: 3px solid var(--blue);
-            outline-offset: 2px;
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .nav {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                gap: 0.4rem;
-            }
-
-            .nav-link {
-                padding: 0.4rem 0.7rem;
-                font-size: 0.75rem;
-            }
-
-            .stats-row {
-                gap: 2rem;
-            }
-        }
-    </style>
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <!-- Flag Banner -->
-    <div class="flag-banner" role="banner">
-        <div style="background:#000"></div>
-        <div style="background:#fff"></div>
-        <div style="background:#009736"></div>
-        <div style="background:#ed2c25"></div>
-    </div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <main style="max-width: 700px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem;" role="main">
-        <!-- Navigation -->
-        <header>
-            <nav class="nav" role="navigation" aria-label="Main navigation">
-                <div class="nav-left">
-                    <div class="nav-avatar">
-                        <img src="images/prt.jpg" alt="Abdulrahman Hossam">
-                    </div>
-                    <div class="nav-info">
-                        <h1>Abdulrahman Hossam</h1>
-                        <p>Software Engineer</p>
-                    </div>
-                </div>
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="blog.html" class="nav-link active">Blog</a>
-                    <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
-                        class="nav-link">GitHub</a>
-                </div>
+    <div class="site-shell">
+        <header class="site-header">
+            <a href="index.html" class="brand-link" aria-label="Abdulrahman Hossam, home">
+                <img src="images/avatar.jpg" alt="" width="32" height="32" class="brand-avatar">
+                <span class="brand-handle">abdulrahmanhossam.github.io</span>
+            </a>
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="about.html" class="nav-item">About</a>
+                <a href="projects.html" class="nav-item">Projects</a>
+                <a href="blog.html" class="nav-item is-active" aria-current="page">Writing</a>
             </nav>
         </header>
 
-        <!-- Back -->
-        <a href="index.html" class="back-link">← Back</a>
+        <main id="main-content" aria-labelledby="writing-title">
+            <h1 id="writing-title" class="home-title">Writing</h1>
+            <p class="lead-copy" style="margin-top: 1rem;">
+                I write about backend engineering, .NET memory internals, domain modeling, and systems programming.
+            </p>
 
-        <!-- Blog Header -->
-        <div class="blog-header">
-            <h2>Blogging about backend engineering, system design, and scalable software.</h2>
-            <p>Notes on backend systems, performance, and building software that scales.</p>
-        </div>
+            <ol id="blog-articles-list" class="articles-list" aria-label="Articles"></ol>
 
-        <!-- Stats -->
-        <div class="stats-row">
-            <div class="stat">
-                <span class="stat-value">3</span>
-                <span class="stat-label">Articles</span>
+            <div class="utility-links">
+                <button type="button" id="open-reading-paths" class="text-link">Reading paths</button>
+                <button type="button" id="open-saved-articles" class="text-link">Saved articles</button>
+                <button type="button" id="open-glossary" class="text-link">Glossary</button>
             </div>
-            <div class="stat">
-                <span class="stat-value">36</span>
-                <span class="stat-label">Min Read</span>
-            </div>
-        </div>
+        </main>
 
-        <!-- Latest Post -->
-        <a href="article.html?post=aspnet-core-right-way-part-2" class="post-card">
-            <span class="badge">Latest</span>
-            <div class="date">Jun 2026</div>
-            <h3>ASP.NET Core: The Right Way — Part 2: Controllers, Routing &amp; HTTP Responses</h3>
-            <p>A practical guide to controllers, attribute routing, model binding, and returning proper HTTP responses — build your first CRUD endpoints.</p>
-            <div class="read-time">
-                <span>🕐</span>
-                <span>10 min read</span>
+        <dialog id="utility-dialog" class="site-dialog" aria-labelledby="utility-dialog-title">
+            <div class="dialog-inner">
+                <div class="dialog-header">
+                    <h2 id="utility-dialog-title" class="dialog-title">Details</h2>
+                    <button type="button" id="utility-dialog-close" class="icon-btn" aria-label="Close dialog">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="utility-dialog-body" class="dialog-body"></div>
             </div>
-        </a>
+        </dialog>
 
-        <a href="article.html?post=aspnet-core-right-way-part-1" class="post-card">
-            <div class="date">Jun 2026</div>
-            <h3>ASP.NET Core: The Right Way — Part 1: Framework Foundations &amp; Project Setup</h3>
-            <p>A beginner-friendly walkthrough of ASP.NET Core — what it is, how it works, and how to set up your first API project with a structure that scales.</p>
-            <div class="read-time">
-                <span>🕐</span>
-                <span>8 min read</span>
+        <footer class="site-footer">
+            <nav id="connect" class="footer-links" aria-label="Contact links">
+                <a href="mailto:ahossam.tech@gmail.com" class="text-link">Email</a>
+                <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
+                    class="text-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/abdulrahman-hossam-0ba758285/" target="_blank"
+                    rel="noopener noreferrer" class="text-link">LinkedIn</a>
+                <a href="https://leetcode.com/u/abdulrhman7ossam2002/" target="_blank" rel="noopener noreferrer"
+                    class="text-link">LeetCode</a>
+                <a href="pdfs/Abdulrahman_Hossam_CV.pdf" target="_blank" rel="noopener noreferrer"
+                    class="text-link">Résumé</a>
+            </nav>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 Abdulrahman Hossam</p>
+                <nav class="footer-more" aria-label="More links">
+                    <a href="ask.html" class="text-link">Ask</a>
+                    <a href="rss.xml" class="text-link" aria-label="Subscribe via RSS">RSS</a>
+                </nav>
             </div>
-        </a>
+            <details class="palestine-details">
+                <summary class="palestine-summary">
+                    <span>Standing with Palestine 🇵🇸</span>
+                    <svg class="palestine-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                </summary>
+                <div class="palestine-body">
+                    <p style="color: var(--text);">Supporting justice, human rights, and the dignity of all people.</p>
+                    <p>Technology should empower communities and promote peace worldwide.</p>
+                </div>
+            </details>
+        </footer>
+    </div>
 
-        <a href="article.html?post=dotnet-memory-internals" class="post-card">
-            <div class="date">Feb 28, 2026</div>
-            <h3>.NET Memory Internals: A Deep Dive</h3>
-            <p>Exploring the CLR's memory management, from the MMU to the
-                Mark-Sweep algorithm, with visual diagrams.</p>
-            <div class="read-time">
-                <span>🕐</span>
-                <span>18 min read</span>
-            </div>
-        </a>
-
-        <!-- Solidarity -->
-        <div class="solidarity">
-            <h3>Standing with Palestine <span style="font-size: 1.15rem;">🇵🇸</span></h3>
-            <p>Supporting justice, human rights, and the dignity of all people. Technology should empower
-                communities and promote peace worldwide.</p>
-        </div>
-    </main>
+    <script src="js/data.js"></script>
+    <script src="js/site.js"></script>
 </body>
 
 </html>

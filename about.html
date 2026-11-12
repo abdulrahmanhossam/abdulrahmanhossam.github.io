@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TODO(security): GitHub Pages static hosting does not support custom HTTP headers (X-Frame-Options / frame-ancestors); enforced meta CSP for script-src/object-src/base-uri. -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' mailto:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#1c1c1c">
+    <meta name="color-scheme" content="dark">
+    <meta name="description"
+        content="About Abdulrahman Hossam — experience across Ofuq, Tawjjeh, SiGma, open-source .NET libraries, and systems projects.">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231c1c1c' width='100' height='100' rx='16'/><text x='50' y='64' font-family='monospace' font-size='42' font-weight='600' fill='%23f5f5f5' text-anchor='middle'>AH</text></svg>"
+        type="image/svg+xml">
+    <title>About — Abdulrahman Hossam</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a href="index.html" class="brand-link" aria-label="Abdulrahman Hossam, home">
+                <img src="images/avatar.jpg" alt="" width="32" height="32" class="brand-avatar">
+                <span class="brand-handle">abdulrahmanhossam.github.io</span>
+            </a>
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="about.html" class="nav-item is-active" aria-current="page">About</a>
+                <a href="projects.html" class="nav-item">Projects</a>
+                <a href="blog.html" class="nav-item">Writing</a>
+            </nav>
+        </header>
+
+        <main id="main-content" class="stack-lg">
+            <section aria-labelledby="about-heading" class="stack-sm">
+                <h1 id="about-heading" class="home-title">About</h1>
+                <p class="lead-copy">
+                    I’m Abdulrahman Hossam, a backend and systems software engineer based in Cairo, Egypt. I build
+                    deployment platforms, Clean Architecture backends, and open-source developer tools at
+                    <a href="https://github.com/ofuqq" target="_blank" rel="noopener noreferrer"
+                        class="inline-link">Ofuq</a>
+                    and
+                    <a href="https://github.com/Tawjjeh" target="_blank" rel="noopener noreferrer"
+                        class="inline-link">Tawjjeh</a>.
+                </p>
+                <p class="lead-copy" style="color: var(--text-muted);">
+                    My work spans architecture, domain modeling, runtime internals, and deployment tooling. Recent
+                    projects include single-host deployment control planes in .NET 10, native Rust desktop rendering
+                    engines, and zero-dependency NuGet libraries. I care about keeping systems predictable under load
+                    and readable down to the memory layout.
+                </p>
+            </section>
+
+            <section aria-labelledby="experience-heading">
+                <h2 id="experience-heading" class="section-subheading">Experience</h2>
+                <ul class="experience-list">
+                    <li class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-org">
+                                <a href="https://github.com/ofuqq" target="_blank" rel="noopener noreferrer"
+                                    class="inline-link">Ofuq</a>
+                            </h3>
+                            <p class="experience-date tabular-nums">2026 — Present</p>
+                        </div>
+                        <p class="experience-role">Founder &amp; Software Engineer</p>
+                        <p class="experience-summary">
+                            Building open-source infrastructure, desktop engineering tools, and reusable .NET libraries.
+                        </p>
+                        <dl class="subproject-list">
+                            <div>
+                                <dt>
+                                    <a href="project.html?slug=marsa" class="inline-link">Marsa</a>
+                                </dt>
+                                <dd>
+                                    Architected a self-hosted deployment platform for a single Linux host using .NET 10,
+                                    PostgreSQL 17, Docker BuildKit, and Caddy 2.x. Designed immutable release builds,
+                                    redacted build logs, health-gated traffic cutover, rollback support, and an
+                                    Arabic-localized Razor dashboard.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>
+                                    <a href="project.html?slug=ruqa" class="inline-link">Ruqa</a>
+                                </dt>
+                                <dd>
+                                    Contributed 84+ commits across the native Rust desktop whiteboard built with winit,
+                                    tiny-skia, and softbuffer. Implemented reproducible performance budget benchmarks
+                                    (~34.2 MB peak RSS), researched damage-rect rendering vs caching, analyzed Arabic
+                                    input paths, and fixed viewport and board-naming bugs.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>
+                                    <a href="project.html?slug=user-activity-logger"
+                                        class="inline-link">UserActivityLogger</a>
+                                </dt>
+                                <dd>
+                                    Published and maintained an attribute-driven audit logging NuGet package (v1.0.10)
+                                    for ASP.NET Core MVC targeting .NET 8, 9, and 10, featuring a global result filter,
+                                    form data redaction, and EF Core DbContext persistence.
+                                </dd>
+                            </div>
+                        </dl>
+                    </li>
+
+                    <li class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-org">
+                                <a href="https://github.com/Tawjjeh" target="_blank" rel="noopener noreferrer"
+                                    class="inline-link">Tawjjeh</a>
+                            </h3>
+                            <p class="experience-date tabular-nums">2026 — Present</p>
+                        </div>
+                        <p class="experience-role">Software Engineer</p>
+                        <p class="experience-summary">
+                            Engineering backend architecture, domain models, and CI/CD workflows for educational
+                            platforms.
+                        </p>
+                        <dl class="subproject-list">
+                            <div>
+                                <dt>
+                                    <a href="project.html?slug=talebelm" class="inline-link">TalebElm</a>
+                                </dt>
+                                <dd>
+                                    Built core modules of a .NET 10, ASP.NET Core, and EF Core learning platform
+                                    enforcing strict four-layer Clean Architecture (Domain, Application, Infrastructure,
+                                    Api), dual-gated module unlocks verified against exams and Codeforces/GitHub tasks,
+                                    and automated CI/CD quality and security gates.
+                                </dd>
+                            </div>
+                        </dl>
+                    </li>
+
+                    <li class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-org">SiGma</h3>
+                            <p class="experience-date tabular-nums">Feb 2026 — May 2026</p>
+                        </div>
+                        <p class="experience-role">Freelance .NET Backend Developer</p>
+                        <p class="experience-summary">
+                            Refactored and optimized backend architecture for a large-scale ERP &amp; CRM system across
+                            controllers, services, models, and configurations. Restructured API contracts to align with
+                            frontend binding requirements and enforced Clean Code standards through code reviews.
+                        </p>
+                    </li>
+
+                    <li class="experience-item">
+                        <div class="experience-header">
+                            <h3 class="experience-org">Open Source &amp; Systems Tooling</h3>
+                            <p class="experience-date tabular-nums">2025 — Present</p>
+                        </div>
+                        <p class="experience-role">Author &amp; Maintainer</p>
+                        <p class="experience-summary">
+                            Shipped <a href="project.html?slug=egypt-net" class="inline-link">Egypt.Net.Core</a> on
+                            NuGet (2.13 μs National ID parsing, 150+ unit tests),
+                            <a href="project.html?slug=qget" class="inline-link">qget</a> (cross-platform Go CLI),
+                            <a href="https://github.com/abdulrahmanhossam/creator-analytics" target="_blank"
+                                rel="noopener noreferrer" class="inline-link">Creator Analytics</a> (.NET 10 Clean
+                            Architecture time-series API), and a minimal Arch Linux
+                            <a href="https://github.com/abdulrahmanhossam/rice" target="_blank"
+                                rel="noopener noreferrer" class="inline-link">dwm/st rice</a>.
+                        </p>
+                    </li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="systems-heading" class="stack-sm">
+                <h2 id="systems-heading" class="section-subheading">Systems projects</h2>
+                <p class="lead-copy" style="color: var(--text-muted);">
+                    My systems labs explore runtime internals, operating system concepts, and developer tooling.
+                    <a href="project.html?slug=tinygc" class="inline-link">TinyGC.NET</a> is an educational C#
+                    Mark-Sweep garbage collector with bump-pointer allocation and root handles.
+                    <a href="project.html?slug=kernel-simulator" class="inline-link">Kernel Simulator</a> is a
+                    tick-based OS scheduler in ASP.NET Core 9 supporting Round Robin, Preemptive Priority, Aging, and
+                    I/O blocking.
+                    <a href="https://github.com/abdulrahmanhossam/dotnet-memory-internals" target="_blank"
+                        rel="noopener noreferrer" class="inline-link">.NET Memory Internals</a> pairs native C
+                    allocations with CLR heap/LOH experiments.
+                </p>
+            </section>
+
+            <section aria-labelledby="education-heading" class="stack-sm">
+                <h2 id="education-heading" class="section-subheading">Education</h2>
+                <p class="lead-copy" style="color: var(--text-muted);">
+                    Al-Azhar University — Bachelor’s Degree, College of Education (Oct 2020 — Present, Cairo, Egypt).
+                </p>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <nav id="connect" class="footer-links" aria-label="Contact links">
+                <a href="mailto:ahossam.tech@gmail.com" class="text-link">Email</a>
+                <a href="https://github.com/abdulrahmanhossam" target="_blank" rel="noopener noreferrer"
+                    class="text-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/abdulrahman-hossam-0ba758285/" target="_blank"
+                    rel="noopener noreferrer" class="text-link">LinkedIn</a>
+                <a href="https://leetcode.com/u/abdulrhman7ossam2002/" target="_blank" rel="noopener noreferrer"
+                    class="text-link">LeetCode</a>
+                <a href="pdfs/Abdulrahman_Hossam_CV.pdf" target="_blank" rel="noopener noreferrer"
+                    class="text-link">Résumé</a>
+            </nav>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 Abdulrahman Hossam</p>
+                <nav class="footer-more" aria-label="More links">
+                    <a href="ask.html" class="text-link">Ask</a>
+                    <a href="rss.xml" class="text-link" aria-label="Subscribe via RSS">RSS</a>
+                </nav>
+            </div>
+            <details class="palestine-details">
+                <summary class="palestine-summary">
+                    <span>Standing with Palestine 🇵🇸</span>
+                    <svg class="palestine-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                </summary>
+                <div class="palestine-body">
+                    <p style="color: var(--text);">Supporting justice, human rights, and the dignity of all people.</p>
+                    <p>Technology should empower communities and promote peace worldwide.</p>
+                </div>
+            </details>
+        </footer>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/site.js"></script>
+</body>
+
+</html>
+
