@@ -3,7 +3,7 @@
 window.PORTFOLIO_DATA = {
     profile: {
         name: 'Abdulrahman Hossam',
-        handle: 'abdulrahmanhossam.github.io',
+        handle: 'Abdulrahman Hossam',
         email: 'ahossam.tech@gmail.com',
         github: 'https://github.com/abdulrahmanhossam',
         linkedin: 'https://www.linkedin.com/in/abdulrahman-hossam-0ba758285/',
